@@ -107,7 +107,7 @@ const HowItWorks = () => {
 
           {/* CTA */}
           <div className="bg-primary rounded-3xl p-10 md:p-14 text-center shadow-md">
-            <h3 className="text-2xl md:text-3xl font-bold text-black mb-6">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
               Ready to get started?
             </h3>
             <p className="text-lg text-white leading-relaxed max-w-2xl mx-auto mb-10">

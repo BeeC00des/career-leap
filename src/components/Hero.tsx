@@ -43,9 +43,9 @@ const Hero = () => {
         <div className="relative z-10 w-full py-16 bg-primary">
           {/* Banner */}
           <div className="text-center mb-10 animate-slideUp">
-            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 text-white/90 text-sm font-medium shadow-lg">
-              <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-              <span>Applications Close November 2025 • Program Starts January 2026</span>
+            <div className="inline-flex items-center gap-3 bg-white border border-white/20 rounded-full px-6 py-3 text-white/90 text-sm font-medium shadow-lg">
+              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              <span className="text-black">Applications Close November 2025 • Program Starts January 2026</span>
             </div>
           </div>
 
