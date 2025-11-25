@@ -36,7 +36,7 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="section-padding bg-[#f8f9f9]">
+    <section id="testimonials"  className="section-padding bg-[#f8f9f9]">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center mb-14">
           <h2 className="text-4xl font-bold text-foreground mb-4">

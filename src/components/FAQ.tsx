@@ -73,7 +73,7 @@ const FAQ = () => {
             </Accordion>
           </div>
 
-          <div className="text-center mt-12 slide-in-up animate-delay-500">
+          <div id="contact" className="text-center mt-12 slide-in-up animate-delay-500">
             <div className="bg-primary/5 rounded-2xl p-8 border border-primary/10">
               <h3 className="text-xl font-semibold text-foreground mb-4">
                 Still have questions?
