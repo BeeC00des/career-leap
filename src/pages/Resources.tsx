@@ -77,7 +77,7 @@ const Resources = () => {
       <section className="py-12 md:py-20 bg-gradient-to-br from-background to-muted">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
               CareerLeap Resources
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">
@@ -445,7 +445,7 @@ const Resources = () => {
                   Practice your skills in a safe environment with real-world scenarios. Build a portfolio that showcases your abilities to potential employers.
                 </p>
                 <Button 
-                  variant="secondary" 
+                  variant="default" 
                   className="w-full group-hover:shadow-md transition-all"
                   onClick={() => navigate('/lab')}
                 >
@@ -487,7 +487,7 @@ const Resources = () => {
                   Stay up-to-date with the latest trends, tips, and strategies for career success. Learn from industry leaders and successful professionals.
                 </p>
                 <Button 
-                  variant="ghost" 
+                  variant="default" 
                   className="w-full group-hover:shadow-md transition-all"
                   onClick={() => navigate('/blog')}
                 >
@@ -505,6 +505,7 @@ const Resources = () => {
       
       <Footer />
     </main>
+
   );
 };
 

@@ -57,15 +57,15 @@ const Lab = () => {
         <Button
           variant="ghost"
           onClick={() => navigate("/resources")}
-          className="mb-8"
+          className="mb-8 hover:bg-primary"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Resources
         </Button>
 
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary/10 rounded-2xl mb-4">
-            <Beaker className="w-8 h-8 text-secondary" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-4">
+            <Beaker className="w-8 h-8 text-primary" />
           </div>
           <h1 className="text-4xl font-bold mb-4">Leap Lab</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -81,8 +81,8 @@ const Lab = () => {
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 bg-secondary/10 rounded-lg">
-                        <Icon className="w-6 h-6 text-secondary" />
+                      <div className="p-2 bg-primary/10 rounded-lg">
+                        <Icon className="w-6 h-6 text-primary" />
                       </div>
                       <div>
                         <CardTitle className="text-xl">{project.title}</CardTitle>
@@ -111,7 +111,7 @@ const Lab = () => {
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             Complete projects and challenges to showcase your skills to potential employers
           </p>
-          <Button size="lg" variant="secondary" onClick={() => setWaitlistOpen(true)}>
+          <Button size="lg" variant="default" onClick={() => setWaitlistOpen(true)}>
             Join Beta Program
           </Button>
         </div>
