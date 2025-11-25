@@ -109,7 +109,7 @@ const Resources = () => {
                 <CardContent>
                   {/* Hero Section for Mentors */}
                   <div className="text-center mb-8 md:mb-12">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Meet Our Mentors & Coaches</h2>
+                    <h2 className="text-primary text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Meet Our Mentors & Coaches</h2>
                     <p className="text-base md:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed px-2">
                       They have walked the path you aspire to take. With years of proven industry experience, they bring both expertise and lived insights to guide you. Their mission is to help you navigate your career journey smoothly — avoiding common pitfalls and accelerating your growth with the right knowledge, skills, and mindset.
                     </p>
