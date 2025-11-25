@@ -1,0 +1,13 @@
+project_id = "maqpxgmmzhmnuhdsjlqc"
+
+[functions.submit-strategy-call]
+verify_jwt = false
+
+[functions.submit-career-assessment]
+verify_jwt = false
+
+[functions.submit-waitlist]
+verify_jwt = false
+
+[functions.submit-mentor-application]
+verify_jwt = false

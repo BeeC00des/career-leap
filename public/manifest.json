@@ -1,0 +1,17 @@
+{
+  "name": "CareerLeap - Career Success for International Students",
+  "short_name": "CareerLeap",
+  "description": "Transform your coursework into career-ready projects and land jobs in Germany",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0EA5E9",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
