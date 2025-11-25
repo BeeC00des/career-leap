@@ -16,17 +16,12 @@ const AnimatedNumber = ({ end, duration = 2000, suffix = "", prefix = "" }: Stat
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
       { threshold: 0.1 }
     );
 
-    if (countRef.current) {
-      observer.observe(countRef.current);
-    }
-
+    if (countRef.current) observer.observe(countRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -41,22 +36,18 @@ const AnimatedNumber = ({ end, duration = 2000, suffix = "", prefix = "" }: Stat
       const progress = timestamp - startTime;
       const percentage = Math.min(progress / duration, 1);
 
-      // Easing function for smooth animation
       const easeOutQuart = 1 - Math.pow(1 - percentage, 4);
       setCount(Math.floor(easeOutQuart * end));
 
-      if (percentage < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
+      if (percentage < 1) animationFrame = requestAnimationFrame(animate);
     };
 
     animationFrame = requestAnimationFrame(animate);
-
     return () => cancelAnimationFrame(animationFrame);
   }, [isVisible, end, duration]);
 
   return (
-    <div ref={countRef} className="text-4xl md:text-5xl font-bold text-primary">
+    <div ref={countRef} className="text-4xl md:text-5xl font-extrabold tracking-tight text-primary">
       {prefix}{count}{suffix}
     </div>
   );
@@ -64,45 +55,21 @@ const AnimatedNumber = ({ end, duration = 2000, suffix = "", prefix = "" }: Stat
 
 const AnimatedStats = () => {
   const stats = [
-    {
-      icon: Users,
-      value: 50,
-      suffix: "",
-      label: "Beta Spots Available",
-      description: "Limited enrollment"
-    },
-    {
-      icon: Clock,
-      value: 8,
-      suffix: "-12",
-      label: "Week Program",
-      description: "Intensive transformation"
-    },
-    {
-      icon: TrendingUp,
-      value: 100,
-      suffix: "%",
-      label: "Free Access",
-      description: "Community-supported"
-    },
-    {
-      icon: Award,
-      value: 10,
-      suffix: "+",
-      label: "Years Experience",
-      description: "Expert mentorship"
-    }
+    { icon: Users, value: 50, suffix: "", label: "Beta Spots Available", description: "Limited enrollment" },
+    { icon: Clock, value: 8, suffix: "-12", label: "Week Program", description: "Intensive transformation" },
+    { icon: TrendingUp, value: 100, suffix: "%", label: "Free Access", description: "Community-supported" },
+    { icon: Award, value: 10, suffix: "+", label: "Years Experience", description: "Expert mentorship" }
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5" aria-labelledby="stats-heading">
+    <section className="py-20 bg-gradient-to-b from-muted/30 via-background to-muted/20" aria-labelledby="stats-heading">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 id="stats-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-4 slide-in-up">
+          <div className="text-center mb-16">
+            <h2 id="stats-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Program at a Glance
             </h2>
-            <p className="text-lg text-muted-foreground slide-in-up animate-delay-200">
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
               Everything you need to know about joining our beta cohort
             </p>
           </div>
@@ -113,20 +80,17 @@ const AnimatedStats = () => {
               return (
                 <div
                   key={index}
-                  className="bg-card rounded-2xl p-8 text-center card-gradient hover-lift slide-in-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="rounded-2xl p-8 bg-card shadow-sm hover:shadow-xl transition-all duration-300 border border-border/50 backdrop-blur-sm text-center group"
                 >
-                  <div className="flex justify-center mb-4">
-                    <div className="p-4 bg-primary/10 rounded-xl">
-                      <Icon className="w-8 h-8 text-primary" aria-hidden="true" />
+                  <div className="flex justify-center mb-6">
+                    <div className="p-4 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
+                      <Icon className="w-8 h-8 text-primary" />
                     </div>
                   </div>
-                  <AnimatedNumber
-                    end={stat.value}
-                    suffix={stat.suffix}
-                    duration={2000}
-                  />
-                  <div className="mt-3 mb-2">
+
+                  <AnimatedNumber end={stat.value} suffix={stat.suffix} duration={2000} />
+
+                  <div className="mt-4">
                     <p className="font-semibold text-foreground text-lg">{stat.label}</p>
                     <p className="text-sm text-muted-foreground">{stat.description}</p>
                   </div>
@@ -135,10 +99,10 @@ const AnimatedStats = () => {
             })}
           </div>
 
-          <div className="mt-12 text-center bg-white/50 dark:bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border">
-            <p className="text-muted-foreground">
-              <span className="font-semibold text-foreground">Applications close:</span> November 2025 •{" "}
-              <span className="font-semibold text-foreground">Program starts:</span> January 2026
+          <div className="mt-14 text-center bg-primary backdrop-blur-xl rounded-xl p-6 border border-border shadow-sm">
+            <p className="text-white text-sm md:text-base">
+              <span className="font-semibold text-white">Applications close:</span> November 2025 •
+              <span className="font-semibold text-white ml-1">Program starts:</span> January 2026
             </p>
           </div>
         </div>
