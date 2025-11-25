@@ -97,8 +97,8 @@ const Resources = () => {
               <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
                 <CardHeader>
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="p-3 bg-accent/10 rounded-lg">
-                      <Users className="h-8 w-8 text-accent-foreground" />
+                    <div className="p-3 bg-primary/10 rounded-lg">
+                      <Users className="h-8 w-8 text-primary" />
                     </div>
                     <div>
                       <CardTitle className="text-3xl">Leap Mentors</CardTitle>
@@ -417,8 +417,8 @@ const Resources = () => {
             <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
               <CardHeader>
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="p-3 bg-secondary/10 rounded-lg">
-                    <Beaker className="h-8 w-8 text-secondary" />
+                  <div className="p-3 bg-primary/10 rounded-lg">
+                    <Beaker className="h-8 w-8 text-primary" />
                   </div>
                   <div>
                     <CardTitle className="text-2xl">Leap Lab</CardTitle>
@@ -459,8 +459,8 @@ const Resources = () => {
             <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
               <CardHeader>
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="p-3 bg-muted rounded-lg">
-                    <FileText className="h-8 w-8 text-foreground" />
+                  <div className="p-3 bg-primary/10 rounded-lg">
+                    <FileText className="h-8 w-8 text-primary" />
                   </div>
                   <div>
                     <CardTitle className="text-2xl">Blog</CardTitle>
