@@ -4,63 +4,79 @@ import WaitlistForm from "./WaitlistForm";
 
 const PilotOffer = () => {
   const [waitlistOpen, setWaitlistOpen] = useState(false);
+
   return (
     <>
-      <WaitlistForm 
-        open={waitlistOpen} 
+      <WaitlistForm
+        open={waitlistOpen}
         onOpenChange={setWaitlistOpen}
         onStrategyCallRequest={() => {}}
       />
-      <section className="section-padding bg-gradient-to-br from-accent/10 to-primary/10" aria-labelledby="pilot-heading">
+
+      <section
+        className="section-padding bg-gradient-to-b from-primary/5 via-background to-background"
+        aria-labelledby="pilot-heading"
+      >
         <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-card rounded-3xl p-8 md:p-12 card-gradient hover-lift text-center">
-            <div className="flex justify-center mb-6">
-              <Sparkles className="w-12 h-12 text-accent" aria-hidden="true" />
-            </div>
-            <h2 id="pilot-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-8 slide-in-up">
-              Pilot Cohort Launch
-            </h2>
-            
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-muted/30 rounded-xl p-6 slide-in-up animate-delay-200">
-                <div className="flex justify-center mb-3">
-                  <Users className="w-8 h-8 text-primary" aria-hidden="true" />
-                </div>
-                <div className="text-2xl font-bold text-primary mb-2">First 10 Students</div>
-                <p className="text-sm text-muted-foreground">Limited spots available</p>
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-card rounded-3xl shadow-xl p-10 md:p-14 border border-border/40 backdrop-blur-xl">
+              <div className="flex justify-center mb-6">
+                <Sparkles className="w-14 h-14 text-primary drop-shadow-md" />
               </div>
-              <div className="bg-muted/30 rounded-xl p-6 slide-in-up animate-delay-300">
-                <div className="flex justify-center mb-3">
-                  <Percent className="w-8 h-8 text-secondary" aria-hidden="true" />
-                </div>
-                <div className="text-2xl font-bold text-secondary mb-2">Free Access</div>
-                <p className="text-sm text-muted-foreground">Community-supported program</p>
-              </div>
-              <div className="bg-muted/30 rounded-xl p-6 slide-in-up animate-delay-400">
-                <div className="flex justify-center mb-3">
-                  <Award className="w-8 h-8 text-accent" aria-hidden="true" />
-                </div>
-                <div className="text-2xl font-bold text-accent mb-2">Lifetime Access</div>
-                <p className="text-sm text-muted-foreground">Alumni support group</p>
-              </div>
-            </div>
 
-            <div className="bg-primary/10 border border-primary/20 rounded-xl p-6 mb-8 slide-in-up animate-delay-500">
-              <p className="text-foreground font-medium">
-                Community-driven mentorship from experienced professionals in Data, Risk & Business
-              </p>
-            </div>
+              <h2
+                id="pilot-heading"
+                className="text-center text-4xl md:text-5xl font-extrabold tracking-tight text-foreground mb-10"
+              >
+                Pilot Cohort Launch
+              </h2>
 
-            <button 
-              onClick={() => setWaitlistOpen(true)}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg transition-colors slide-in-up animate-delay-600 inline-flex items-center gap-2"
-              aria-label="Apply to CareerLeap pilot cohort"
-            >
-              Apply Now – Limited Spots Available
-              <ArrowRight className="w-5 h-5" aria-hidden="true" />
-            </button>
-          </div>
+              {/* Stats Grid */}
+              <div className="grid md:grid-cols-3 gap-6 mb-10">
+                <div className="bg-muted/20 border border-border/30 rounded-2xl p-6 text-center hover:shadow-lg transition-all">
+                  <div className="flex justify-center mb-3">
+                    <Users className="w-9 h-9 text-primary" />
+                  </div>
+                  <div className="text-2xl font-bold text-primary mb-1">First 10 Students</div>
+                  <p className="text-sm text-muted-foreground">Limited spots available</p>
+                </div>
+
+                <div className="bg-muted/20 border border-border/30 rounded-2xl p-6 text-center hover:shadow-lg transition-all">
+                  <div className="flex justify-center mb-3">
+                    <Percent className="w-9 h-9 text-primary" />
+                  </div>
+                  <div className="text-2xl font-bold text-primary mb-1">Free Access</div>
+                  <p className="text-sm text-muted-foreground">Community-supported program</p>
+                </div>
+
+                <div className="bg-muted/20 border border-border/30 rounded-2xl p-6 text-center hover:shadow-lg transition-all">
+                  <div className="flex justify-center mb-3">
+                    <Award className="w-9 h-9 text-primary" />
+                  </div>
+                  <div className="text-2xl font-bold text-primary mb-1">Lifetime Access</div>
+                  <p className="text-sm text-muted-foreground">Alumni support group</p>
+                </div>
+              </div>
+
+              {/* Highlight Banner */}
+              <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 mb-10 text-center">
+                <p className="text-lg font-medium text-foreground">
+                  Community-driven mentorship from experienced professionals in
+                  Data, Risk & Business
+                </p>
+              </div>
+
+              {/* CTA Button */}
+              <div className="text-center">
+                <button
+                  onClick={() => setWaitlistOpen(true)}
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-4 rounded-2xl font-semibold text-lg transition-all shadow-md hover:shadow-xl inline-flex items-center gap-2"
+                >
+                  Apply Now – Limited Spots Available
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

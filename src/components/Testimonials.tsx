@@ -1,3 +1,10 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 const Testimonials = () => {
   const testimonials = [
     {
@@ -12,44 +19,92 @@ const Testimonials = () => {
     },
     {
       text: "The coaching sessions gave me clarity and focus. My CV and LinkedIn now stand out, and I got more interviews in 3 weeks than in the past 6 months.",
-      author: "Recent Graduate", 
+      author: "Recent Graduate",
       rating: 5
     }
   ];
 
-  return (
-    <section id="testimonials" className="section-padding bg-gradient-to-br from-secondary/5 to-accent/5" aria-labelledby="testimonials-heading">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 id="testimonials-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-8 slide-in-up">
-              What Students Say
-            </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed slide-in-up animate-delay-200">
-              Real stories from international students who transformed their careers
-            </p>
-          </div>
+  const [current, setCurrent] = useState(0);
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div 
+  const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
+  const prev = () =>
+    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+
+  useEffect(() => {
+    const interval = setInterval(next, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section id="testimonials"  className="section-padding bg-[#f8f9f9]">
+      <div className="container mx-auto px-4 max-w-5xl">
+        <div className="text-center mb-14">
+          <h2 className="text-4xl font-bold text-foreground mb-4">
+            What Students Say
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Real stories from international students who transformed their careers
+          </p>
+        </div>
+
+        {/* Carousel Wrapper */}
+        <div className="relative flex items-center justify-center">
+          {/* Left Button */}
+          <button
+            onClick={prev}
+            className="hidden md:flex absolute left-0 p-3 rounded-full bg-background shadow hover:bg-muted transition"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+
+          {/* Cards */}
+          <div className="flex overflow-hidden w-full">
+            {testimonials.map((t, index) => (
+              <motion.div
                 key={index}
-                className={`bg-card rounded-2xl p-8 card-gradient hover-lift slide-in-up animate-delay-${(index + 1) * 200}`}
+                className="min-w-full flex justify-center px-4"
+                animate={{ x: `${-100 * current}%` }}
+                transition={{ type: "spring", stiffness: 160, damping: 26 }}
               >
-                <div className="flex mb-4" role="img" aria-label={`${testimonial.rating} out of 5 stars`}>
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-accent text-xl" aria-hidden="true">⭐</span>
-                  ))}
-                </div>
-                <blockquote className="text-lg text-foreground leading-relaxed mb-6 italic">
-                  "{testimonial.text}"
-                </blockquote>
-                <div className="text-muted-foreground font-medium">
-                  — {testimonial.author}
-                </div>
-              </div>
+                <Card className="w-full max-w-3xl backdrop-blur-md bg-card/80 border shadow-xl rounded-2xl p-8">
+                  <CardContent>
+                    <div className="flex mb-4">
+                      {[...Array(t.rating)].map((_, i) => (
+                        <span key={i} className="text-accent text-2xl">★</span>
+                      ))}
+                    </div>
+                    <blockquote className="text-xl text-foreground leading-relaxed mb-6 italic">
+                      "{t.text}"
+                    </blockquote>
+                    <p className="text-muted-foreground font-medium">
+                      — {t.author}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
+
+          {/* Right Button */}
+          <button
+            onClick={next}
+            className="hidden md:flex absolute right-0 p-3 rounded-full bg-background shadow hover:bg-muted transition"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Dots */}
+        <div className="flex justify-center mt-6 space-x-2">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrent(index)}
+              className={`w-3 h-3 rounded-full transition ${
+                current === index ? "bg-primary" : "bg-muted-foreground/30"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>

@@ -77,7 +77,7 @@ const Resources = () => {
       <section className="py-12 md:py-20 bg-gradient-to-br from-background to-muted">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
               CareerLeap Resources
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">
@@ -97,8 +97,8 @@ const Resources = () => {
               <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
                 <CardHeader>
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="p-3 bg-accent/10 rounded-lg">
-                      <Users className="h-8 w-8 text-accent-foreground" />
+                    <div className="p-3 bg-primary/10 rounded-lg">
+                      <Users className="h-8 w-8 text-primary" />
                     </div>
                     <div>
                       <CardTitle className="text-3xl">Leap Mentors</CardTitle>
@@ -109,7 +109,7 @@ const Resources = () => {
                 <CardContent>
                   {/* Hero Section for Mentors */}
                   <div className="text-center mb-8 md:mb-12">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Meet Our Mentors & Coaches</h2>
+                    <h2 className="text-primary text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Meet Our Mentors & Coaches</h2>
                     <p className="text-base md:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed px-2">
                       They have walked the path you aspire to take. With years of proven industry experience, they bring both expertise and lived insights to guide you. Their mission is to help you navigate your career journey smoothly — avoiding common pitfalls and accelerating your growth with the right knowledge, skills, and mindset.
                     </p>
@@ -417,8 +417,8 @@ const Resources = () => {
             <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
               <CardHeader>
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="p-3 bg-secondary/10 rounded-lg">
-                    <Beaker className="h-8 w-8 text-secondary" />
+                  <div className="p-3 bg-primary/10 rounded-lg">
+                    <Beaker className="h-8 w-8 text-primary" />
                   </div>
                   <div>
                     <CardTitle className="text-2xl">Leap Lab</CardTitle>
@@ -445,7 +445,7 @@ const Resources = () => {
                   Practice your skills in a safe environment with real-world scenarios. Build a portfolio that showcases your abilities to potential employers.
                 </p>
                 <Button 
-                  variant="secondary" 
+                  variant="default" 
                   className="w-full group-hover:shadow-md transition-all"
                   onClick={() => navigate('/lab')}
                 >
@@ -459,8 +459,8 @@ const Resources = () => {
             <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
               <CardHeader>
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="p-3 bg-muted rounded-lg">
-                    <FileText className="h-8 w-8 text-foreground" />
+                  <div className="p-3 bg-primary/10 rounded-lg">
+                    <FileText className="h-8 w-8 text-primary" />
                   </div>
                   <div>
                     <CardTitle className="text-2xl">Blog</CardTitle>
@@ -487,7 +487,7 @@ const Resources = () => {
                   Stay up-to-date with the latest trends, tips, and strategies for career success. Learn from industry leaders and successful professionals.
                 </p>
                 <Button 
-                  variant="ghost" 
+                  variant="default" 
                   className="w-full group-hover:shadow-md transition-all"
                   onClick={() => navigate('/blog')}
                 >
@@ -505,6 +505,7 @@ const Resources = () => {
       
       <Footer />
     </main>
+
   );
 };
 

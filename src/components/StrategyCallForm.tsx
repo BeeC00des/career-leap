@@ -36,7 +36,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+// import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
@@ -79,17 +79,17 @@ const StrategyCallForm = ({ open, onOpenChange }: StrategyCallFormProps) => {
     try {
       console.log("Strategy call form submitted:", values);
 
-      const { error: dbError } = await supabase.from('strategy_call_submissions').insert({
-        full_name: values.fullName,
-        email: values.email,
-        phone: values.phone,
-        university: values.university,
-        current_status: values.currentStatus,
-        goal: values.goal,
-        language: values.language,
-        availability: values.availability.toISOString(),
-      });
-      if (dbError) throw dbError;
+      // const { error: dbError } = await supabase.from('strategy_call_submissions').insert({
+      //   full_name: values.fullName,
+      //   email: values.email,
+      //   phone: values.phone,
+      //   university: values.university,
+      //   current_status: values.currentStatus,
+      //   goal: values.goal,
+      //   language: values.language,
+      //   availability: values.availability.toISOString(),
+      // });
+      // if (dbError) throw dbError;
 
       setIsSubmitted(true);
       toast({

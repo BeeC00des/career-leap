@@ -29,7 +29,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { CheckCircle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+// import { supabase } from "@/integrations/supabase/client";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
@@ -71,19 +71,19 @@ const CareerAssessmentForm = ({ open, onOpenChange }: CareerAssessmentFormProps)
     try {
       console.log('Career assessment form submitted:', values);
 
-      const { error: dbError } = await supabase.from('career_assessment_submissions').insert({
-        full_name: values.fullName,
-        email: values.email,
-        phone: values.phone,
-        university: values.university,
-        current_status: values.currentStatus,
-        field_of_study: values.fieldOfStudy,
-        career_goals: values.careerGoals,
-        skills: values.skills,
-        challenges: values.challenges,
-        experience: values.experience,
-      });
-      if (dbError) throw dbError;
+      // const { error: dbError } = await supabase.from('career_assessment_submissions').insert({
+      //   full_name: values.fullName,
+      //   email: values.email,
+      //   phone: values.phone,
+      //   university: values.university,
+      //   current_status: values.currentStatus,
+      //   field_of_study: values.fieldOfStudy,
+      //   career_goals: values.careerGoals,
+      //   skills: values.skills,
+      //   challenges: values.challenges,
+      //   experience: values.experience,
+      // });
+      // if (dbError) throw dbError;
 
       setIsSubmitted(true);
       toast({
