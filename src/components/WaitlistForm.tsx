@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { supabase } from "@/integrations/supabase/client";
+// import { supabase } from "@/integrations/supabase/client";
 import {
   Dialog,
   DialogContent,
@@ -73,18 +73,18 @@ const WaitlistForm = ({ open, onOpenChange, onStrategyCallRequest }: WaitlistFor
       console.log('Waitlist form submitted:', values);
 
       // Direct insert into database (edge function optional)
-      const { error: dbError } = await supabase.from('waitlist_submissions').insert({
-        full_name: values.fullName,
-        email: values.email,
-        phone: values.phone,
-        location: values.location,
-        university: values.university,
-        current_status: values.currentStatus,
-        field_of_study: values.fieldOfStudy,
-        career_challenge: values.careerChallenge,
-        wants_strategy_call: values.wantsStrategyCall === 'yes',
-      });
-      if (dbError) throw dbError;
+      // const { error: dbError } = await supabase.from('waitlist_submissions').insert({
+      //   full_name: values.fullName,
+      //   email: values.email,
+      //   phone: values.phone,
+      //   location: values.location,
+      //   university: values.university,
+      //   current_status: values.currentStatus,
+      //   field_of_study: values.fieldOfStudy,
+      //   career_challenge: values.careerChallenge,
+      //   wants_strategy_call: values.wantsStrategyCall === 'yes',
+      // });
+      // if (dbError) throw dbError;
 
       setIsSubmitted(true);
       toast({

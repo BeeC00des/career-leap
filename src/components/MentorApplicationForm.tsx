@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+// import { supabase } from "@/integrations/supabase/client";
 import { CheckCircle2, Loader2 } from "lucide-react";
 
 const formSchema = z.object({
@@ -53,22 +53,22 @@ export function MentorApplicationForm({ open, onOpenChange }: MentorApplicationF
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
-      const { error } = await supabase.functions.invoke("submit-mentor-application", {
-        body: {
-          full_name: values.fullName,
-          email: values.email,
-          phone: values.phone || null,
-          linkedin_url: values.linkedinUrl || null,
-          job_title: values.jobTitle,
-          company: values.company || null,
-          years_of_experience: parseInt(values.yearsOfExperience),
-          expertise_areas: values.expertiseAreas.split(",").map(area => area.trim()),
-          why_mentor: values.whyMentor,
-          availability: values.availability,
-        },
-      });
+      // const { error } = await supabase.functions.invoke("submit-mentor-application", {
+      //   body: {
+      //     full_name: values.fullName,
+      //     email: values.email,
+      //     phone: values.phone || null,
+      //     linkedin_url: values.linkedinUrl || null,
+      //     job_title: values.jobTitle,
+      //     company: values.company || null,
+      //     years_of_experience: parseInt(values.yearsOfExperience),
+      //     expertise_areas: values.expertiseAreas.split(",").map(area => area.trim()),
+      //     why_mentor: values.whyMentor,
+      //     availability: values.availability,
+      //   },
+      // });
 
-      if (error) throw error;
+      // if (error) throw error;
 
       setIsSubmitted(true);
       toast({

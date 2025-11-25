@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X, Gift } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+// import { supabase } from "@/integrations/supabase/client";
 
 const ExitIntentPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,19 +45,19 @@ const ExitIntentPopup = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.from('waitlist_submissions').insert({
-        email: email,
-        full_name: 'Exit Intent Subscriber',
-        phone: '',
-        location: '',
-        university: '',
-        current_status: 'other',
-        field_of_study: '',
-        career_challenge: 'Captured via exit intent popup',
-        wants_strategy_call: false,
-      });
+      // const { error } = await supabase.from('waitlist_submissions').insert({
+      //   email: email,
+      //   full_name: 'Exit Intent Subscriber',
+      //   phone: '',
+      //   location: '',
+      //   university: '',
+      //   current_status: 'other',
+      //   field_of_study: '',
+      //   career_challenge: 'Captured via exit intent popup',
+      //   wants_strategy_call: false,
+      // });
 
-      if (error) throw error;
+      // if (error) throw error;
 
       toast({
         title: "Success! 🎉",
