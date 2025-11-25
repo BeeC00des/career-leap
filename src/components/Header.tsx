@@ -36,7 +36,7 @@ const Header = () => {
       />
       
       <header className="sticky top-0 z-50 glass-effect border-b border-border/50">
-        <div className="container mx-auto px-4 py-3">
+        <div className="container mx-auto px-4 py-5">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div 
@@ -46,7 +46,7 @@ const Header = () => {
               <div className="w-9 h-9 rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-all duration-200">
                 <img src={logo} alt="CareerLeap Logo" className="w-full h-full object-contain" />
               </div>
-              <div className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <div className="text-2xl font-bold bg-gradient-to-r from-[#eb993d] to-primary bg-clip-text text-transparent">
                 CareerLeap
               </div>
             </div>
@@ -93,7 +93,7 @@ const Header = () => {
                 trigger={
                   <Button 
                     variant="outline"
-                    className="hidden md:inline-flex"
+                    className="hidden md:inline-flex hover:bg-primary"
                     size="default"
                   >
                     Contact Us
