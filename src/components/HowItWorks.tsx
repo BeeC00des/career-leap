@@ -115,7 +115,7 @@ const HowItWorks = () => {
             </p>
             <button
               onClick={() => setStrategyCallOpen(true)}
-              className="px-10 py-4 rounded-xl bg-white text-black font-semibold text-lg shadow hover:bg-primary/90 transition-colors"
+              className="px-10 py-4 rounded-xl bg-white hover:bg-white text-black font-semibold text-lg shadow hover:bg-primary/90 transition-colors"
             >
               Book Your Free Strategy Call
             </button>
