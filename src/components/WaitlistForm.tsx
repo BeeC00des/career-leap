@@ -29,6 +29,8 @@ interface WaitlistFormProps {
   onStrategyCallRequest: () => void;
 }
 
+const tableName: string = import.meta.env.VITE_SUPABASE_NAME;
+
 const WaitlistForm = ({ open, onOpenChange, onStrategyCallRequest }: WaitlistFormProps) => {
   // console.log(supabase);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -65,7 +67,7 @@ const WaitlistForm = ({ open, onOpenChange, onStrategyCallRequest }: WaitlistFor
 
       // Direct insert into database (edge function optional)
       const { data: dbData, error: dbError } = await supabase
-      .from('careerleap')
+      .from(tableName)
       .insert({
         fullName: values.fullName,
         email: values.email,
