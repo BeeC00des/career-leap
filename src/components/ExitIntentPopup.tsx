@@ -91,8 +91,8 @@ const ExitIntentPopup = () => {
 
         <DialogHeader>
           <div className="flex justify-center mb-4">
-            <div className="p-4 bg-accent/10 rounded-full">
-              <Gift className="w-12 h-12 text-accent" aria-hidden="true" />
+            <div className="p-4 bg-primary/10 rounded-full">
+              <Gift className="w-12 h-12 text-primary" aria-hidden="true" />
             </div>
           </div>
           <DialogTitle className="text-center text-2xl font-bold">
