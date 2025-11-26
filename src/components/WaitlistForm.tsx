@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-// import { supabase } from "@/integrations/supabase/client";
 import {
   Dialog,
   DialogContent,
@@ -29,6 +28,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import supabase from "@/config/supabaseclient";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
@@ -49,6 +49,8 @@ interface WaitlistFormProps {
 }
 
 const WaitlistForm = ({ open, onOpenChange, onStrategyCallRequest }: WaitlistFormProps) => {
+
+  console.log(supabase)
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
 
