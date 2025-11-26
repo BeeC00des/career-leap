@@ -3,7 +3,7 @@ import logo from "@/assets/careerleap-logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary py-16">
+    <footer className="bg-primary py-10">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
