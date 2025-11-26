@@ -17,7 +17,7 @@ const ViewWaitList = () => {
   const fetchWaitlist = async () => {
     setLoading(true);
 
-    const { data, error } = await supabase.from("tableName").select("*").order("created_at", { ascending: false });
+    const { data, error } = await supabase.from(tableName).select("*").order("created_at", { ascending: false });
 
     if (error) {
       console.error("Error fetching waitlist:", error.message);
