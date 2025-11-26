@@ -32,8 +32,14 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
+- Supabase
 
 ## How can I deploy this project?
 
 Vercel 
 Namecheap domain
+
+
+## Supabase
+
+npm i @supabase/supabase-js

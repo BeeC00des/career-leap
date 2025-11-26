@@ -2,33 +2,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-// import { supabase } from "@/integrations/supabase/client";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import supabase from "@/config/supabaseclient";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
@@ -48,7 +29,10 @@ interface WaitlistFormProps {
   onStrategyCallRequest: () => void;
 }
 
+const tableName: string = import.meta.env.VITE_SUPABASE_NAME;
+
 const WaitlistForm = ({ open, onOpenChange, onStrategyCallRequest }: WaitlistFormProps) => {
+  // console.log(supabase);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
 
@@ -70,41 +54,59 @@ const WaitlistForm = ({ open, onOpenChange, onStrategyCallRequest }: WaitlistFor
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
-      console.log('Waitlist form submitted:', values);
+      if (!values) {
+        toast({
+          title: "Missing fields",
+          description: "Please fill in all input fields.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+      console.log("Waitlist form submitted:", values);
 
       // Direct insert into database (edge function optional)
-      // const { error: dbError } = await supabase.from('waitlist_submissions').insert({
-      //   full_name: values.fullName,
-      //   email: values.email,
-      //   phone: values.phone,
-      //   location: values.location,
-      //   university: values.university,
-      //   current_status: values.currentStatus,
-      //   field_of_study: values.fieldOfStudy,
-      //   career_challenge: values.careerChallenge,
-      //   wants_strategy_call: values.wantsStrategyCall === 'yes',
-      // });
-      // if (dbError) throw dbError;
+      const { data: dbData, error: dbError } = await supabase
+      .from(tableName)
+      .insert({
+        fullName: values.fullName,
+        email: values.email,
+        phone: values.phone,
+        location: values.location,
+        university: values.university,
+        currentStatus: values.currentStatus,
+        fieldOfStudy: values.fieldOfStudy,
+        careerChallenge: values.careerChallenge,
+        wantsStrategyCall: values.wantsStrategyCall,
+      });
+      if (dbError) {
+        console.log(dbError)
+        throw dbError;
+      } 
+
+      if(dbData) {
+        console.log(dbData)
+      }
 
       setIsSubmitted(true);
       toast({
-        title: 'Welcome to the waitlist! 🎉',
+        title: "Welcome to the waitlist! 🎉",
         description: "Check your email for confirmation. We'll be in touch soon!",
       });
 
       // If user wants strategy call, show that form
-      if (values.wantsStrategyCall === 'yes') {
+      if (values.wantsStrategyCall === "yes") {
         setTimeout(() => {
           onOpenChange(false);
           onStrategyCallRequest();
         }, 2000);
       }
     } catch (error: any) {
-      console.error('Error submitting waitlist form:', error);
+      console.error("Error submitting waitlist form:", error);
       toast({
-        title: 'Submission failed',
-        description: error?.message || 'Please try again or contact us directly.',
-        variant: 'destructive',
+        title: "Submission failed",
+        description: error?.message || "Please try again or contact us directly.",
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
@@ -127,13 +129,9 @@ const WaitlistForm = ({ open, onOpenChange, onStrategyCallRequest }: WaitlistFor
             </DialogTitle>
           </DialogHeader>
           <div className="text-center py-6">
-            <p className="text-muted-foreground mb-6">
-              We'll be in touch soon with early access and program updates.
-            </p>
+            <p className="text-muted-foreground mb-6">We'll be in touch soon with early access and program updates.</p>
             {form.getValues("wantsStrategyCall") === "yes" && (
-              <p className="text-sm text-muted-foreground">
-                Taking you to book your strategy call...
-              </p>
+              <p className="text-sm text-muted-foreground">Taking you to book your strategy call...</p>
             )}
             {form.getValues("wantsStrategyCall") === "no" && (
               <Button onClick={onStrategyCallRequest} variant="outline">
@@ -152,7 +150,8 @@ const WaitlistForm = ({ open, onOpenChange, onStrategyCallRequest }: WaitlistFor
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">Join the CareerLeap Waitlist</DialogTitle>
           <DialogDescription className="text-muted-foreground">
-            Want early access to our career breakthrough program? Join the waitlist to be the first to know when we launch.
+            Want early access to our career breakthrough program? Join the waitlist to be the first to know when we
+            launch.
           </DialogDescription>
         </DialogHeader>
 
@@ -273,10 +272,10 @@ const WaitlistForm = ({ open, onOpenChange, onStrategyCallRequest }: WaitlistFor
                 <FormItem>
                   <FormLabel>What's your biggest career challenge right now? (Optional)</FormLabel>
                   <FormControl>
-                    <Textarea 
+                    <Textarea
                       placeholder="e.g. CV not getting noticed, no portfolio, unclear job path, etc."
                       className="min-h-[100px]"
-                      {...field} 
+                      {...field}
                     />
                   </FormControl>
                   <FormMessage />
@@ -313,7 +312,7 @@ const WaitlistForm = ({ open, onOpenChange, onStrategyCallRequest }: WaitlistFor
                   Submitting...
                 </>
               ) : (
-                'Join the Waitlist'
+                "Join the Waitlist"
               )}
             </Button>
           </form>

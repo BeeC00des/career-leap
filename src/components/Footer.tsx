@@ -3,7 +3,7 @@ import logo from "@/assets/careerleap-logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary py-16">
+    <footer className="bg-primary py-10">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -15,18 +15,18 @@ const Footer = () => {
                 CareerLeap
               </div>
             </div>
-            <p className="text-background/80 max-w-2xl mx-auto text-lg leading-relaxed">
+            <p className="text-background/80  mx-auto text-xl leading-relaxed">
               Empowering international students to break entry barriers in the German job market
             </p>
           </div>
           
           {/* Contact Section */}
-          <div className="bg-background/5 backdrop-blur-sm rounded-xl p-8 mb-12 border border-background/10">
-            <p className="text-white mb-6 text-lg font-semibold text-center">Get in Touch</p>
+          <div className="bg-white backdrop-blur-sm rounded-xl p-8 mb-12 border border-background/10">
+            <p className="text-primary mb-6 text-lg font-semibold text-center">Get in Touch</p>
             <div className="grid md:grid-cols-3 gap-6">
               <a 
                 href="mailto:careerleap.de@gmail.com"
-                className="flex items-center justify-center gap-2 text-white  animated-underline font-medium transition-colors"
+                className="flex items-center justify-center gap-2 text-primary  animated-underline font-medium transition-colors"
               >
                 <Mail className="w-5 h-5" />
                 <span>careerleap.de@gmail.com</span>
@@ -35,14 +35,14 @@ const Footer = () => {
                 href="https://linkedin.com/company/careerleap"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 text-white animated-underline font-medium transition-colors"
+                className="flex items-center justify-center gap-2 text-primary animated-underline font-medium transition-colors"
               >
                 <Linkedin className="w-5 h-5" />
                 <span>LinkedIn</span>
               </a>
               <a 
                 href="tel:+49XXXXXXXXX"
-                className="flex items-center justify-center gap-2 text-white animated-underline font-medium transition-colors"
+                className="flex items-center justify-center gap-2 text-primary animated-underline font-medium transition-colors"
               >
                 <Phone className="w-5 h-5" />
                 <span>Call Us</span>
