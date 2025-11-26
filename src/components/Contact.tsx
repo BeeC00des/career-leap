@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import supabase from "@/config/supabaseclient";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    fullName: "",
+    emailAddress: "",
     message: ""
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -18,12 +19,29 @@ const Contact = () => {
     setIsLoading(true);
     
     // Simulate form submission
+      // Direct insert into database (edge function optional)
+          const { data: dbData, error: dbError } = await supabase
+          .from("contact_us")
+          .insert({
+            fullName: formData.fullName,
+            emailAddress: formData?.emailAddress,
+            message:  formData?.message
+          
+          });
+          if (dbError) {
+            console.log(dbError)
+            throw dbError;
+          } 
+    
+          if(dbData) {
+            console.log(dbData)
+          }
     setTimeout(() => {
       toast({
         title: "Message sent successfully!",
         description: "Thank you for reaching out. We'll get back to you within 24 hours.",
       });
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ fullName: "", emailAddress: "", message: "" });
       setIsLoading(false);
     }, 1000);
   };
@@ -100,7 +118,7 @@ const Contact = () => {
                     type="text"
                     name="name"
                     placeholder="Your Name *"
-                    value={formData.name}
+                    value={formData.fullName}
                     onChange={handleChange}
                     required
                     className="w-full"
@@ -112,7 +130,7 @@ const Contact = () => {
                     type="email"
                     name="email"
                     placeholder="Email Address *"
-                    value={formData.email}
+                    value={formData.emailAddress}
                     onChange={handleChange}
                     required
                     className="w-full"
