@@ -67,17 +67,17 @@ const ComparisonTable = () => {
 
           {/* Table Header */}
           <div className="hidden lg:grid grid-cols-3 gap-6 mb-6">
-            <div className="text-sm font-medium text-neutral-400">Category</div>
+            <div className="text-2xl font-medium text-primary mt-10 px-10">Category</div>
 
-            <div className="text-center p-4 rounded-xl backdrop-blur-xl bg-primary text-white border">
+            <div className="text-center p-4 rounded-xl backdrop-blur-xl bg-primary dark:bg-neutral-800/40 border">
               <X className="w-6 h-6 text-red-500 mx-auto mb-2" />
-              <p className="font-medium text-white  dark:text-white">
+              <p className="font-medium text-white dark:text-white">
                 Before CareerLeap
               </p>
-              <p className="text-xs text-white ">Struggling & Uncertain</p>
+              <p className="text-xs text-white">Struggling & Uncertain</p>
             </div>
 
-            <div className="text-center p-4 rounded-xl backdrop-blur-xl bg-accent  border">
+            <div className="text-center p-4 rounded-xl backdrop-blur-xl bg-primary dark:bg-neutral-800/40 border">
               <Check className="w-6 h-6 text-emerald-500 mx-auto mb-2" />
               <p className="font-medium text-white dark:text-white">
                 After CareerLeap
@@ -87,11 +87,11 @@ const ComparisonTable = () => {
           </div>
 
           {/* Desktop Rows */}
-          <div className="hidden lg:flex flex-col gap-6">
+          <div className="hidden lg:flex flex-col gap-2">
             {comparisons.map((item, index) => (
               <div
                 key={index}
-                className=" gap-10 p-6  bg-gray-200/10 rounded-2xl border  dark:bg-neutral-900/40 backdrop-blur-lg shadow-sm hover:shadow-md transition-all"
+                className="grid grid-cols-3 gap-6 p-6 rounded-2xl border bg-white/70 dark:bg-neutral-900/40 backdrop-blur-lg shadow-sm hover:shadow-md transition-all"
               >
                 <div className="font-medium text-neutral-800 dark:text-neutral-200">
                   {item.category}
@@ -107,7 +107,7 @@ const ComparisonTable = () => {
           </div>
 
           {/* Mobile Cards */}
-          <div className="lg:hidden gap-2 space-y-6">
+          <div className="lg:hidden space-y-6">
             {comparisons.map((item, i) => (
               <Card
                 key={i}
@@ -118,7 +118,7 @@ const ComparisonTable = () => {
                     {item.category}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4 gap-2">
+                <CardContent className="space-y-4">
                   <div className="rounded-xl p-4 bg-red-50 dark:bg-red-500/10 border">
                     <div className="flex items-center space-x-2 mb-2">
                       <X className="w-4 h-4 text-red-500" />
@@ -144,7 +144,7 @@ const ComparisonTable = () => {
           </div>
 
           {/* CTA */}
-          <div className="mt-16 text-center">
+         <div className="mt-16 text-center">
             <div className="p-10 rounded-3xl bg-primary border shadow-sm">
               <h3 className="text-2xl font-semibold text-white mb-4">
                 Ready to Transform Your Career?
@@ -161,4 +161,5 @@ const ComparisonTable = () => {
 };
 
 export default ComparisonTable;
+
 
