@@ -2,45 +2,26 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { CheckCircle } from "lucide-react";
-// import { supabase } from "@/integrations/supabase/client";
+import supabase from "@/config/supabaseclient";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
+  emailAddress: z.string().email("Please enter a valid email address"),
+  phoneNumber: z.string().min(10, "Please enter a valid phone number"),
   university: z.string().min(2, "Please enter your university"),
   currentStatus: z.enum(["student", "graduate", "working", "unemployed", "other"]),
   fieldOfStudy: z.string().min(2, "Field of study is required"),
-  careerGoals: z.string().min(10, "Please describe your career goals"),
+  careerGoals: z.string().min(2, "Please describe your career goals"),
   skills: z.string().min(5, "Please list your key skills"),
-  challenges: z.string().min(10, "Please describe your main challenges"),
+  challenges: z.string().min(2, "Please describe your main challenges"),
   experience: z.enum(["none", "internships", "part-time", "full-time", "freelance"]),
 });
 
@@ -57,45 +38,48 @@ const CareerAssessmentForm = ({ open, onOpenChange }: CareerAssessmentFormProps)
     resolver: zodResolver(formSchema),
     defaultValues: {
       fullName: "",
-      email: "",
-      phone: "",
+      emailAddress: "",
+      phoneNumber: "",
       university: "",
+      // currentStatus: "student", // choose your preferred default
       fieldOfStudy: "",
       careerGoals: "",
       skills: "",
       challenges: "",
+      // experience: "none", // choose your preferred default
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      console.log('Career assessment form submitted:', values);
+      // console.log('Career assessment form submitted:', values);
 
-      // const { error: dbError } = await supabase.from('career_assessment_submissions').insert({
-      //   full_name: values.fullName,
-      //   email: values.email,
-      //   phone: values.phone,
-      //   university: values.university,
-      //   current_status: values.currentStatus,
-      //   field_of_study: values.fieldOfStudy,
-      //   career_goals: values.careerGoals,
-      //   skills: values.skills,
-      //   challenges: values.challenges,
-      //   experience: values.experience,
-      // });
-      // if (dbError) throw dbError;
+      const { error: dbError } = await supabase.from("Table assessment").insert({
+        fullName: values.fullName,
+        emailAddress: values.emailAddress,
+        phoneNumber: values.phoneNumber,
+        university: values.university,
+        currentStatus: values.currentStatus,
+        fieldOfStudy: values.fieldOfStudy,
+        careerGoals: values.careerGoals,
+        skills: values.skills,
+        challenges: values.challenges,
+        experience: values.experience,
+      });
+
+      if (dbError) throw dbError;
 
       setIsSubmitted(true);
       toast({
-        title: 'Assessment submitted!',
+        title: "Assessment submitted!",
         description: "We'll send your personalized career report within 24 hours.",
       });
     } catch (error: any) {
-      console.error('Career assessment submission error:', error);
+      console.error("Career assessment submission error:", error);
       toast({
-        title: 'Submission failed',
-        description: error?.message || 'Please try again or contact us directly.',
-        variant: 'destructive',
+        title: "Submission failed",
+        description: error?.message || "Please try again or contact us directly.",
+        variant: "destructive",
       });
     }
   };
@@ -118,7 +102,8 @@ const CareerAssessmentForm = ({ open, onOpenChange }: CareerAssessmentFormProps)
           </DialogHeader>
           <div className="text-center py-6">
             <p className="text-muted-foreground mb-4">
-              Thank you for completing your career assessment. We'll analyze your responses and send you a personalized career report within 24 hours.
+              Thank you for completing your career assessment. We'll analyze your responses and send you a personalized
+              career report within 24 hours.
             </p>
             <div className="bg-muted rounded-lg p-4 mb-4">
               <h4 className="font-semibold mb-2">What happens next?</h4>
@@ -129,9 +114,7 @@ const CareerAssessmentForm = ({ open, onOpenChange }: CareerAssessmentFormProps)
                 <li>• Resources tailored to your goals</li>
               </ul>
             </div>
-            <p className="text-sm text-muted-foreground">
-              Check your email for your career report.
-            </p>
+            <p className="text-sm text-muted-foreground">Check your email for your career report.</p>
           </div>
         </DialogContent>
       </Dialog>
@@ -167,7 +150,7 @@ const CareerAssessmentForm = ({ open, onOpenChange }: CareerAssessmentFormProps)
 
               <FormField
                 control={form.control}
-                name="email"
+                name="emailAddress"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Email Address</FormLabel>
@@ -181,7 +164,7 @@ const CareerAssessmentForm = ({ open, onOpenChange }: CareerAssessmentFormProps)
 
               <FormField
                 control={form.control}
-                name="phone"
+                name="phoneNumber"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Phone Number</FormLabel>
@@ -281,10 +264,10 @@ const CareerAssessmentForm = ({ open, onOpenChange }: CareerAssessmentFormProps)
                 <FormItem>
                   <FormLabel>What are your career goals?</FormLabel>
                   <FormControl>
-                    <Textarea 
+                    <Textarea
                       placeholder="e.g. Become a software engineer at a tech company, transition to product management, start my own business..."
                       className="min-h-[100px]"
-                      {...field} 
+                      {...field}
                     />
                   </FormControl>
                   <FormMessage />
@@ -299,10 +282,10 @@ const CareerAssessmentForm = ({ open, onOpenChange }: CareerAssessmentFormProps)
                 <FormItem>
                   <FormLabel>Key Skills & Strengths</FormLabel>
                   <FormControl>
-                    <Textarea 
+                    <Textarea
                       placeholder="e.g. Programming (Python, Java), Data analysis, Leadership, Communication, Design..."
                       className="min-h-[80px]"
-                      {...field} 
+                      {...field}
                     />
                   </FormControl>
                   <FormMessage />
@@ -317,10 +300,10 @@ const CareerAssessmentForm = ({ open, onOpenChange }: CareerAssessmentFormProps)
                 <FormItem>
                   <FormLabel>What are your biggest career challenges?</FormLabel>
                   <FormControl>
-                    <Textarea 
+                    <Textarea
                       placeholder="e.g. Lack of experience, networking difficulties, unclear career path, skill gaps..."
                       className="min-h-[80px]"
-                      {...field} 
+                      {...field}
                     />
                   </FormControl>
                   <FormMessage />
@@ -331,7 +314,7 @@ const CareerAssessmentForm = ({ open, onOpenChange }: CareerAssessmentFormProps)
             <Button type="submit" className="w-full" size="lg">
               Get My Free Career Assessment
             </Button>
-            
+
             <p className="text-xs text-muted-foreground text-center">
               Your personalized report will be sent to your email within 24 hours
             </p>
