@@ -18,7 +18,7 @@ const ContactWaitlist = () => {
     setLoading(true);
 
     const { data, error } = await supabase
-      .from(tableName)
+      .from("contact_us")
       .select("*")
       .order("created_at", { ascending: false });
 
