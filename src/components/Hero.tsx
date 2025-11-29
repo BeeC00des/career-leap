@@ -1,21 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import WaitlistForm from "@/components/WaitlistForm";
 import StrategyCallForm from "@/components/StrategyCallForm";
 import CareerAssessmentForm from "@/components/CareerAssessmentForm";
 import heroImage from "@/assets/hero-image.jpg";
-import {
-  GraduationCap,
-  Rocket,
-  TrendingUp,
-  FileCheck2,
-  BarChart3,
-} from "lucide-react";
+import { GraduationCap, Rocket, TrendingUp, FileCheck2, BarChart3 } from "lucide-react";
 
 const Hero = () => {
   const [waitlistOpen, setWaitlistOpen] = useState(false);
   const [strategyCallOpen, setStrategyCallOpen] = useState(false);
   const [assessmentOpen, setAssessmentOpen] = useState(false);
+
+  // Looping typing effect
+const words = [" Career-Ready Projects "];
+const [text, setText] = useState("");
+const [index, setIndex] = useState(0);
+const [subIndex, setSubIndex] = useState(0);
+const [deleting, setDeleting] = useState(false);
+
+useEffect(() => {
+  const currentWord = words[index];
+
+  // typing speed
+  const timeout = setTimeout(() => {
+    setText(currentWord.substring(0, subIndex));
+
+    if (!deleting && subIndex === currentWord.length) {
+      // pause after typing full word
+      setTimeout(() => setDeleting(true), 1000);
+      return;
+    }
+
+    if (deleting && subIndex === 0) {
+      // move to next word (you only have one now, but ready for more)
+      setDeleting(false);
+      setIndex((prev) => (prev + 1) % words.length);
+      return;
+    }
+
+    setSubIndex((prev) => prev + (deleting ? -1 : 1));
+  }, deleting ? 60 : 100); // delete faster than typing
+
+  return () => clearTimeout(timeout);
+}, [subIndex, deleting, index]);
+
 
   return (
     <>
@@ -34,10 +62,7 @@ const Hero = () => {
         className="relative min-h-screen flex items-center justify-center overflow-hidden bg-primary"
         aria-labelledby="hero-heading"
       >
-      
-
         <div className="relative z-10 w-full py-10 bg-primary">
-
           {/* Banner */}
           <div className="text-center mb-10 animate-slideUp">
             <div className="inline-flex items-center gap-3 bg-white border border-white/20 rounded-full px-6 py-3 text-white/90 text-sm font-medium shadow-lg">
@@ -47,26 +72,28 @@ const Hero = () => {
           </div>
 
           <div className="container mx-auto px-6 max-w-5xl text-center text-white">
-
             {/* Icon */}
             <div className="flex justify-center mb-6 animate-slideUp delay-100">
               <GraduationCap className="w-16 h-16 text-accent drop-shadow-xl" />
             </div>
 
             {/* Main Heading */}
-            <h1
-              id="hero-heading"
-              className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-8 leading-tight animate-slideUp delay-200 drop-shadow-2xl"
-            >
-              Turn Your Coursework into
-              <span className="text-accent"> Career-Ready Projects </span>
-              & Land a Job in Germany
-            </h1>
+           <h1
+  id="hero-heading"
+  className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-8 leading-tight animate-slideUp delay-200 drop-shadow-2xl"
+>
+  Turn Your Coursework into
+  <span className="text-accent">{text}</span>
+  <span className="animate-pulse">|</span>
+  & Land a Job in Germany
+</h1>
+
+           
 
             {/* Subheading */}
             <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed animate-slideUp delay-300">
-              International students and graduates: Don’t let your degree go unnoticed.
-              We help you turn your academic work into a portfolio that employers trust.
+              International students and graduates: Don’t let your degree go unnoticed. We help you turn your academic
+              work into a portfolio that employers trust.
             </p>
 
             {/* CTA BUTTONS */}
@@ -98,13 +125,12 @@ const Hero = () => {
       {/* ========================= */}
       <section className="bg-gradient-to-b from-primary/10 via-background to-background py-20 text-white">
         <div className="container mx-auto px-6 max-w-5xl text-center">
-
           {/* Challenge Box */}
           <div className="bg-primary rounded-2xl p-8 max-w-xl mx-auto border border-white/20 shadow-xl animate-slideUp">
             <h3 className="text-white text-xl font-semibold mb-3">The Challenge is Real</h3>
             <p className="text-white text-base mb-4">
-              70% of international students in Germany struggle to land their first professional job
-              within 6 months of graduation. We’re building the solution.
+              70% of international students in Germany struggle to land their first professional job within 6 months of
+              graduation. We’re building the solution.
             </p>
             <div className="flex items-center justify-center gap-2 text-accent font-medium text-xl">
               <BarChart3 className="w-4 h-4" />
@@ -158,4 +184,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

@@ -92,7 +92,6 @@ const StrategycallWaitlist = () => {
                     </td>
                     <td className="p-3">{item.goal}</td>
                     <td className="p-3">{item.callLanguage}</td>
-                    {/* <td className="p-3">{item.timeSlot}</td> */}
                      <td className="p-3">
                       {item.timeSlot
                         ? new Date(item.timeSlot).toLocaleDateString()
