@@ -54,7 +54,7 @@ const CareerAssessmentForm = ({ open, onOpenChange }: CareerAssessmentFormProps)
     try {
       // console.log('Career assessment form submitted:', values);
 
-      const { error: dbError } = await supabase.from("Table assessment").insert({
+      const { error: dbError } = await supabase.from("assessment").insert({
         fullName: values.fullName,
         emailAddress: values.emailAddress,
         phoneNumber: values.phoneNumber,
