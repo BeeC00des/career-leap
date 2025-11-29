@@ -1,7 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import JoinWaitlist from "./_components/tabs/join-waitlist";
-import ContactWaitlist from "./_components/tabs/contact-waitlist";
 import StrategycallWaitlist from "./_components/tabs/strategycall-waitlist";
+import AssessmentWaitlist from "./_components/tabs/assessment-waitlist";
 
 const ViewWaitList = () => {
   return (
@@ -20,7 +20,7 @@ const ViewWaitList = () => {
             <JoinWaitlist />
           </TabsContent>
           <TabsContent value="careers">
-            <ContactWaitlist />
+            <AssessmentWaitlist />
           </TabsContent>
 
            <TabsContent value="strategy">
