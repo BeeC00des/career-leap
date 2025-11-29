@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 const ITEMS_PER_PAGE = 10;
 const tableName: string = import.meta.env.VITE_SUPABASE_NAME;
 
-const ContactWaitlist = () => {
+const AssessmentWaitlist = () => {
   const [waitlist, setWaitlist] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -18,7 +18,7 @@ const ContactWaitlist = () => {
     setLoading(true);
 
     const { data, error } = await supabase
-      .from("contact_us")
+      .from("assessment")
       .select("*")
       .order("created_at", { ascending: false });
 
@@ -129,4 +129,4 @@ const ContactWaitlist = () => {
   );
 };
 
-export default ContactWaitlist;
+export default AssessmentWaitlist;
