@@ -1,5 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import JoinWaitlist from "./_components/tabs/join-waitlist";
+import ContactWaitlist from "./_components/tabs/contact-waitlist";
 
 const ViewWaitList = () => {
   return (
@@ -11,12 +12,14 @@ const ViewWaitList = () => {
         <Tabs defaultValue="join" className="w-full">
           <TabsList className="bg-primary text-white">
             <TabsTrigger value="join">Join Wailist Report</TabsTrigger>
-            <TabsTrigger value="careers">Careers Assessment Report</TabsTrigger>
+            <TabsTrigger value="careers">Contact Report</TabsTrigger>
           </TabsList>
           <TabsContent value="join">
             <JoinWaitlist />
           </TabsContent>
-          <TabsContent value="careers">Change your password here.</TabsContent>
+          <TabsContent value="careers">
+            <ContactWaitlist />
+          </TabsContent>
         </Tabs>
       </div>
     </>
