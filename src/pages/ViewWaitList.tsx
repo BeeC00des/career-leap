@@ -14,7 +14,7 @@ const ViewWaitList = () => {
           <TabsList className="bg-primary text-white">
             <TabsTrigger value="join">Join Wailist Report</TabsTrigger>
             <TabsTrigger value="careers">Assessment Report</TabsTrigger>
-            <TabsTrigger value="strategy">Stratey Call Report</TabsTrigger>
+            <TabsTrigger value="strategy">Strategy Call Report</TabsTrigger>
           </TabsList>
           <TabsContent value="join">
             <JoinWaitlist />
