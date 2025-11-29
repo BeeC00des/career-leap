@@ -8,9 +8,6 @@ import { Button } from "@/components/ui/button";
 
 const ITEMS_PER_PAGE = 10;
 
-// Change this if your strategy call table name is different:
-const tableName = "strategy_call_submissions";
-
 const StrategycallWaitlist = () => {
   const [waitlist, setWaitlist] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +18,18 @@ const StrategycallWaitlist = () => {
 
     const { data, error } = await supabase
       .from("book")
-      .select("*")
+      .select(`
+        id,
+        fullName,
+        emailAddress,
+        phoneNumber,
+        university,
+        careerStatus,
+        goal,
+        callLanguage,
+        timeSlot,
+        created_at
+      `)
       .order("created_at", { ascending: false });
 
     if (error) {
@@ -125,4 +133,3 @@ const StrategycallWaitlist = () => {
 };
 
 export default StrategycallWaitlist;
-
