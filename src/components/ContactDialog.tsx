@@ -2,9 +2,17 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { Mail } from "lucide-react";
+import supabase from "@/config/supabaseclient";
 
 interface ContactDialogProps {
   trigger?: React.ReactNode;
@@ -12,9 +20,9 @@ interface ContactDialogProps {
 
 const ContactDialog = ({ trigger }: ContactDialogProps) => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
+    fullName: "",
+    emailAddress: "",
+    message: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -23,23 +31,38 @@ const ContactDialog = ({ trigger }: ContactDialogProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
+    // Direct insert into database (edge function optional)
+    const { data: dbData, error: dbError } = await supabase.from("contact_us").insert({
+      fullName: formData.fullName,
+      emailAddress: formData?.emailAddress,
+      message: formData?.message,
+    });
+    if (dbError) {
+      console.log(dbError);
+      throw dbError;
+    }
+
+    if (dbData) {
+      console.log(dbData);
+    }
+
     // Simulate form submission
     setTimeout(() => {
       toast({
         title: "Message sent successfully!",
         description: "Thank you for reaching out. We'll get back to you within 24 hours.",
       });
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ fullName: "", emailAddress: "", message: "" });
       setIsLoading(false);
       setOpen(false);
     }, 1000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -64,27 +87,27 @@ const ContactDialog = ({ trigger }: ContactDialogProps) => {
           <div>
             <Input
               type="text"
-              name="name"
-              placeholder="Your Name *"
-              value={formData.name}
+              name="fullName"
+              placeholder="Your Name  full name*"
+              value={formData.fullName}
               onChange={handleChange}
               required
               className="w-full"
             />
           </div>
-          
+
           <div>
             <Input
               type="email"
-              name="email"
+              name="emailAddress"
               placeholder="Email Address *"
-              value={formData.email}
+              value={formData.emailAddress}
               onChange={handleChange}
               required
               className="w-full"
             />
           </div>
-          
+
           <div>
             <Textarea
               name="message"
@@ -95,15 +118,11 @@ const ContactDialog = ({ trigger }: ContactDialogProps) => {
               className="w-full min-h-[120px]"
             />
           </div>
-          
-          <Button 
-            type="submit" 
-            className="w-full pulse-glow"
-            disabled={isLoading}
-          >
+
+          <Button type="submit" className="w-full pulse-glow" disabled={isLoading}>
             {isLoading ? "Sending..." : "Send Message"}
           </Button>
-          
+
           <p className="text-xs text-muted-foreground text-center">
             By submitting this form, you agree to receive career tips and program updates from CareerLeap.
           </p>
