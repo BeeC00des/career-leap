@@ -11,38 +11,26 @@ const Hero = () => {
   const [strategyCallOpen, setStrategyCallOpen] = useState(false);
   const [assessmentOpen, setAssessmentOpen] = useState(false);
 
-  // Looping typing effect
+
+
+
+// Only this word — permanent typing
 const words = [" Career-Ready Projects "];
 const [text, setText] = useState("");
-const [index, setIndex] = useState(0);
 const [subIndex, setSubIndex] = useState(0);
-const [deleting, setDeleting] = useState(false);
 
 useEffect(() => {
-  const currentWord = words[index];
+  const currentWord = words[0];
 
-  // typing speed
+  if (subIndex === currentWord.length) return; // stop typing when done
+
   const timeout = setTimeout(() => {
-    setText(currentWord.substring(0, subIndex));
-
-    if (!deleting && subIndex === currentWord.length) {
-      // pause after typing full word
-      setTimeout(() => setDeleting(true), 1000);
-      return;
-    }
-
-    if (deleting && subIndex === 0) {
-      // move to next word (you only have one now, but ready for more)
-      setDeleting(false);
-      setIndex((prev) => (prev + 1) % words.length);
-      return;
-    }
-
-    setSubIndex((prev) => prev + (deleting ? -1 : 1));
-  }, deleting ? 60 : 100); // delete faster than typing
+    setText(currentWord.substring(0, subIndex + 1));
+    setSubIndex((prev) => prev + 1);
+  }, 100); // typing speed
 
   return () => clearTimeout(timeout);
-}, [subIndex, deleting, index]);
+}, [subIndex]);
 
 
   return (
@@ -83,7 +71,7 @@ useEffect(() => {
   className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-8 leading-tight animate-slideUp delay-200 drop-shadow-2xl"
 >
   Turn Your Coursework into
-  <span className="text-accent">{text}</span>
+  <span className="text-accent max-w-20">{text}</span>
   <span className="animate-pulse">|</span>
   & Land a Job in Germany
 </h1>
