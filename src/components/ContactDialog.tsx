@@ -13,6 +13,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { Mail } from "lucide-react";
 import supabase from "@/config/supabaseclient";
+import emailjs from "emailjs-com";
 
 interface ContactDialogProps {
   trigger?: React.ReactNode;
@@ -46,6 +47,27 @@ const ContactDialog = ({ trigger }: ContactDialogProps) => {
     if (dbData) {
       console.log(dbData);
     }
+
+    // Access Vite environment variables
+    const serviceId = import.meta.env.VITE_EMMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMMAILJS_PUBLIC_ID;
+
+    console.log("send");
+    console.log(serviceId);
+
+    // 2️⃣ Send email to admin using EmailJS
+    await emailjs.send(
+      serviceId,
+      templateId,
+      // <-- replace
+      {
+        fullName: formData.fullName,
+        emailAddress: formData.emailAddress,
+        message: formData.message,
+      },
+      publicKey // <-- replace
+    );
 
     // Simulate form submission
     setTimeout(() => {
