@@ -43,7 +43,7 @@ const Index = () => {
         canonicalUrl="https://careerleap.io"
         structuredData={structuredData}
       />
-      <ExitIntentPopup />
+      {/* <ExitIntentPopup /> */}
       <BackToTop />
       <main className="min-h-screen">
         <Header />
